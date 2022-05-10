@@ -1,5 +1,9 @@
 # Sample App For End to End Golden Path
 
+Riccardo version
+
+* disabled the Zurich CBuild and only left the one in US-CENTRAL1.
+
 ## Boostrapping your project
 
 0. Run `./demo-startup.sh` to prepare the environment
@@ -147,10 +151,10 @@ Your app is now deployed locally on minikube with redis.
         skaffold build --file-output=/workspace/artifacts.json \
                        --default-repo=${_REGION}-docker.pkg.dev/$PROJECT_ID/sample-app-repo \
                        --push=true
-    
+
         # Test images
         skaffold test --build-artifacts=/workspace/artifacts.json
-    
+
     - name: 'google/cloud-sdk:latest'
       entrypoint: 'sh'
       args:
