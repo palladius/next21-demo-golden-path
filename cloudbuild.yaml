@@ -15,7 +15,7 @@ steps:
     # Test images
     skaffold test --build-artifacts=/workspace/artifacts.json
 
-# downloadded and wich git works.
+# downloadded and which git works.
 - name: 'google/cloud-sdk:latest'
   entrypoint: 'sh'
   args:
