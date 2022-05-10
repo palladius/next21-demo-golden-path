@@ -8,10 +8,11 @@ gcloud services enable sourcerepo.googleapis.com \
     container.googleapis.com \
     redis.googleapis.com \
     cloudresourcemanager.googleapis.com \
-    servicenetworking.googleapis.com
+    servicenetworking.googleapis.com \
+    artifactregistry.googleapis.com
 
-# Give the Cloud Build service account permission to modify Cloud Deploy 
-# resources and create releases to deploy on GKE. These permissions are 
+# Give the Cloud Build service account permission to modify Cloud Deploy
+# resources and create releases to deploy on GKE. These permissions are
 # necessary for our cloudbuild.yaml file to function properly
 
 PROJECT_NUMBER=$(gcloud projects list --filter="$(gcloud config get-value project)" --format="value(PROJECT_NUMBER)")
@@ -50,7 +51,7 @@ gcloud container clusters create prod \
     --region us-central1 \
     --enable-ip-alias
 
-# Create a service account the staging and prod clusters will use to authenticate 
+# Create a service account the staging and prod clusters will use to authenticate
 # with Config Connector to create redis instances for the application to use:
 
 gcloud iam service-accounts create sample-app-config-connector
@@ -62,7 +63,7 @@ gcloud iam service-accounts add-iam-policy-binding \
     --member="serviceAccount:$(gcloud config get-value project).svc.id.goog[cnrm-system/cnrm-controller-manager]" \
     --role="roles/iam.workloadIdentityUser"
 
-# Deploy the Config Connector to the staging and prod clusters and wire them up 
+# Deploy the Config Connector to the staging and prod clusters and wire them up
 # to the default namespaces in each cluster using the appropriate annotation:
 
 cat > config-connector.yaml <<EOF
