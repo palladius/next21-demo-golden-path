@@ -1,0 +1,38 @@
+apiVersion: skaffold/v2beta28
+#apiVersion: skaffold/v2beta16
+# Note: this step shouldnt be necessary once Cloud Deploy exits beta
+kind: Config
+metadata:
+  name: next--demo-golden-path-copy
+build:
+  artifacts:
+  - image: go-mod-image
+    buildpacks:
+      builder: gcr.io/buildpacks/builder:v1
+deploy:
+  kubectl:
+    manifests:
+    - deployment.yaml
+# aggiunto da Riccardo: https://github.com/willisc7/next21-demo-golden-path
+test:
+- image: go-mod-image
+  custom:
+  - command: echo DISABLED go test # https://github.com/golang/go/issues/51723
+
+# added later by Ricc
+profiles:
+- name: staging
+  deploy:
+    kubectl:
+      manifests:
+      - deployment-staging.yaml
+- name: canary
+  deploy:
+    kubectl:
+      manifests:
+      - deployment-canary.yaml
+- name: prod
+  deploy:
+    kubectl:
+      manifests:
+      - deployment-prod.yaml
