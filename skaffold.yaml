@@ -14,10 +14,10 @@ deploy:
     manifests:
     - deployment.yaml
 # aggiunto da Riccardo: https://github.com/willisc7/next21-demo-golden-path
-test:
-- image: go-mod-image
-  custom:
-  - command: echo DISABLED go test # https://github.com/golang/go/issues/51723
+# test:
+# - image: go-mod-image
+#   custom:
+#   - command: echo DISABLED go test # https://github.com/golang/go/issues/51723
 
 # added later by Ricc
 profiles:
