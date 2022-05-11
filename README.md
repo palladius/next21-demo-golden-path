@@ -4,6 +4,7 @@ Riccardo version
 
 * disabled the Zurich CBuild and only left the one in US-CENTRAL1.
 * increased quota in Cloud Build since it returned error in 0sec due to quota.
+  Now executed. Lets reload
 
 ## Boostrapping your project
 
