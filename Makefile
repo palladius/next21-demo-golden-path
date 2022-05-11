@@ -1,7 +1,7 @@
 
 
 dev-loop:
-  skaffold dev
+	skaffold dev
 
 
 
